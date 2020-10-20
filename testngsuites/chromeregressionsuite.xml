@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Chrome Desktop, Tablet and Mobile Emulator" parallel="classes" thread-count="4">
+    <test name="Sample Test Name">
+        <parameter name="Browser" value="chrome"/>
+        <classes>
+            <class name="discoverireland.HomepageTests"/>
+        </classes>
+    </test>
+</suite>

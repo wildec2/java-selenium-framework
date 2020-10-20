@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="2" total="3" passed="0" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2020-10-20T20:08:36Z" name="Firefox Desktop Tests" finished-at="2020-10-20T20:09:03Z" duration-ms="27287">
+    <groups>
+      <group name="desktop">
+        <method signature="HomepageTests.desktopTest()[pri:0, instance:sample.HomepageTests@367068da]" name="desktopTest" class="sample.HomepageTests"/>
+      </group> <!-- desktop -->
+    </groups>
+    <test started-at="2020-10-20T20:08:36Z" name="Sample Tests Name" finished-at="2020-10-20T20:09:03Z" duration-ms="27287">
+      <class name="sample.HomepageTests">
+        <test-method is-config="true" signature="setUpEnvBeforeTest(java.lang.String, java.lang.reflect.Method)[pri:0, instance:sample.HomepageTests@367068da]" started-at="2020-10-20T20:08:36Z" name="setUpEnvBeforeTest" finished-at="2020-10-20T20:08:53Z" duration-ms="16949" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[public void sample.HomepageTests.desktopTest()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpEnvBeforeTest -->
+        <test-method is-config="true" signature="setUpEnvBeforeTest()[pri:0, instance:sample.HomepageTests@367068da]" started-at="2020-10-20T20:08:53Z" name="setUpEnvBeforeTest" finished-at="2020-10-20T20:09:02Z" duration-ms="8490" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpEnvBeforeTest -->
+        <test-method signature="desktopTest()[pri:0, instance:sample.HomepageTests@367068da]" started-at="2020-10-20T20:09:02Z" name="desktopTest" description="sample test - desktop" finished-at="2020-10-20T20:09:02Z" duration-ms="84" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[number of blog posts incorrect
+Expected: is "blah"
+     but: was "Hostels Worldwide - Online Hostel Bookings, Ratings and Reviews"]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: number of blog posts incorrect
+Expected: is "blah"
+     but: was "Hostels Worldwide - Online Hostel Bookings, Ratings and Reviews"
+at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+at sample.HomepageTests.desktopTest(HomepageTests.java:29)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+at java.base/java.lang.Thread.run(Thread.java:832)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- desktopTest -->
+        <test-method is-config="true" signature="cleanEnvAfterTest(org.testng.ITestResult)[pri:0, instance:sample.HomepageTests@367068da]" started-at="2020-10-20T20:09:02Z" name="cleanEnvAfterTest" finished-at="2020-10-20T20:09:03Z" duration-ms="1744" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=desktopTest status=FAILURE method=HomepageTests.desktopTest()[pri:0, instance:sample.HomepageTests@367068da] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanEnvAfterTest -->
+      </class> <!-- sample.HomepageTests -->
+    </test> <!-- Sample Tests Name -->
+  </suite> <!-- Firefox Desktop Tests -->
+</testng-results>

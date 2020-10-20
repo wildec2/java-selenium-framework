@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="discoverireland.HomepageTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-10-20T20:23:04" hostname="Colums-iMac.local" time="7.308">
+  <properties/>
+  <testcase name="desktopTest" classname="discoverireland.HomepageTests" time="0.186"/>
+  <testcase name="mobileTest" classname="discoverireland.HomepageTests" time="0.03"/>
+  <testcase name="tabletTest" classname="discoverireland.HomepageTests" time="0.03"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[[TestNG-test=Sample Test Name-1] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 86.0.4240.22 (since Google Chrome 86 is installed in your machine)
+[TestNG-test=Sample Test Name-1] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as /Users/columwilde/.m2/repository/webdriver/chromedriver/mac64/86.0.4240.22/chromedriver
+Starting ChromeDriver 86.0.4240.22 (398b0743353ff36fb1b82468f63a3a93b4e2e89e-refs/branch-heads/4240@{#378}) on port 43834
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Oct 20, 2020 9:23:02 P.M. org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+[TestNG-test=Sample Test Name-1] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 86.0.4240.22 (since Google Chrome 86 is installed in your machine)
+[TestNG-test=Sample Test Name-1] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as /Users/columwilde/.m2/repository/webdriver/chromedriver/mac64/86.0.4240.22/chromedriver
+Starting ChromeDriver 86.0.4240.22 (398b0743353ff36fb1b82468f63a3a93b4e2e89e-refs/branch-heads/4240@{#378}) on port 47380
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Oct 20, 2020 9:23:08 P.M. org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+[TestNG-test=Sample Test Name-1] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 86.0.4240.22 (since Google Chrome 86 is installed in your machine)
+[TestNG-test=Sample Test Name-1] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as /Users/columwilde/.m2/repository/webdriver/chromedriver/mac64/86.0.4240.22/chromedriver
+Starting ChromeDriver 86.0.4240.22 (398b0743353ff36fb1b82468f63a3a93b4e2e89e-refs/branch-heads/4240@{#378}) on port 27014
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Oct 20, 2020 9:23:11 P.M. org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>

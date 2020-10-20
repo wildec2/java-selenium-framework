@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Firefox Desktop Tests" parallel="classes" thread-count="4">
+    <test name="Sample Tests Name">
+        <parameter name="Browser" value="firefox"/>
+        <groups>
+            <run>
+                <exclude name="mobile" />
+                <exclude name="tablet" />
+            </run>
+        </groups>
+        <classes>
+            <class name="discoverireland.HomepageTests"/>
+        </classes>
+    </test>
+</suite>
