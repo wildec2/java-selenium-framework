@@ -32,6 +32,6 @@ public class HomepageTests extends TestBase {
     }
 
     private void testPageHeading() {
-        assertThat("page heading incorrect", homepage.getHeading().getText(), is("Explore close to home"));
+        assertThat("page h1 incorrect", homepage.getHeading().getText(), is("Explore close to home"));
     }
 }
