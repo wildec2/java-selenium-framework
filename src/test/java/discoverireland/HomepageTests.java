@@ -16,17 +16,17 @@ public class HomepageTests extends TestBase {
         homepage = new Homepage(getDriver()).openHomePage();
     }
 
-    @Test(groups = "mobile", description = "sample test - mobile")
+    @Test(groups = "mobile", description = "sample homepage test - mobile")
     public void mobileTest() {
         testPageHeading();
     }
 
-    @Test(groups = "tablet", description = "sample test - tablet")
+    @Test(groups = "tablet", description = "sample homepage test - tablet")
     public void tabletTest() {
         testPageHeading();
     }
 
-    @Test(groups = "desktop", description = "sample test - desktop")
+    @Test(groups = "desktop", description = "sample homepage test - desktop")
     public void desktopTest() {
         testPageHeading();
     }
