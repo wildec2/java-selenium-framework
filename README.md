@@ -106,6 +106,10 @@ The elements are initialised with:
 ```
 PageFactory.initElements(new AppiumFieldDecorator(driver, ofSeconds(20)), this);
 ```
+Dependency:
+```
+ru.yandex.qatools.htmlelements:htmlelements-all
+```
 Page Factory is not required here for creating page objects. You can use By or String to as element locators. Whatever you fancy. 
 
 ## Selenium Grid
@@ -204,4 +208,4 @@ task runChromeSuite(type: Test) {
 ```
 
 ## Jenkins
-something neat
+Something cool to go here...

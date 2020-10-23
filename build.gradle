@@ -33,7 +33,7 @@ task runChromeSuite(type: Test) {
     scanForTestClasses = false
     useTestNG() {
         useDefaultListeners = true
-        suites 'testngsuites/chromeregressionsuite.xml'
+        suites 'testngsuites/chromesuite.xml'
     }
     options {
         systemProperties(System.getProperties())
@@ -48,7 +48,7 @@ task runFirefoxSuite(type: Test) {
     scanForTestClasses = false
     useTestNG() {
         useDefaultListeners = true
-        suites 'testngsuites/firefoxregressionsuite.xml'
+        suites 'testngsuites/firefoxsuite.xml'
     }
     options {
         systemProperties(System.getProperties())
