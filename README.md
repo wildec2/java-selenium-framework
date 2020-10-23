@@ -30,13 +30,13 @@ docker-compose down
 You can run your tests using intelliJ straight away. 
 Or you can run the testng suites via the gradle tasks.
 ```
-gradle runChromeSuite
-gradle runFirefoxSuite
+gradle clean runChromeSuite
+gradle clean runFirefoxSuite
 ```
 If you want to run on selenium grid:
 ```
-gradle runChromeSuite -Dheadless=true  -Ddocker=true
-gradle runFirefoxSuite -Dheadless=true  -Ddocker=true
+gradle clean runChromeSuite -Dheadless=true  -Ddocker=true
+gradle clean runFirefoxSuite -Dheadless=true  -Ddocker=true
 ```
 
 
@@ -205,6 +205,16 @@ task runChromeSuite(type: Test) {
     }
     testLogging.showStandardStreams = true
 }
+```
+To run the testng suites via the gradle tasks.
+```
+gradle clean runChromeSuite
+gradle clean runFirefoxSuite
+```
+To run the testng suites via the gradle tasks on selenium grid:
+```
+gradle clean runChromeSuite -Dheadless=true  -Ddocker=true
+gradle clean runFirefoxSuite -Dheadless=true  -Ddocker=true
 ```
 
 ## Jenkins
