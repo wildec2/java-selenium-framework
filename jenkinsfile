@@ -1,7 +1,7 @@
  node {
-     stage ('SCM checkout'){
-         git "https://github.com/wildec2/pwa-responsive-web-java-selenium-framework.git"
-     }
+    stage ('SCM checkout'){
+        git "https://github.com/wildec2/pwa-responsive-web-java-selenium-framework.git"
+    }
  	stage ('Bring Up Selenium Grid'){
         sh "docker-compose up -d"
     }
