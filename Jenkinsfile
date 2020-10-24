@@ -1,4 +1,4 @@
- node {
+ node{
     stage ('SCM checkout'){
         git "https://github.com/wildec2/pwa-responsive-web-java-selenium-framework.git"
     }
