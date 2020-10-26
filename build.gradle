@@ -29,32 +29,45 @@ tasks.withType(Test) {
     jvmArgs project.gradle.startParameter.systemPropertiesArgs.entrySet().collect { "-D${it.key}=${it.value}" }
 }
 
+task runTestSuite(type: Test) {
+    scanForTestClasses = false
+    useTestNG() {
+        useDefaultListeners = true
+        testLogging.showStandardStreams = true
+        suites 'testngsuites/chromesuite.xml',
+                'testngsuites/firefoxsuite.xml'
+    }
+    options {
+        systemProperties(System.getProperties())
+        systemProperties.remove("java.endorsed.dirs")
+        useDefaultListeners = true
+    }
+}
+
 task runChromeSuite(type: Test) {
     scanForTestClasses = false
     useTestNG() {
         useDefaultListeners = true
+        testLogging.showStandardStreams = true
         suites 'testngsuites/chromesuite.xml'
     }
     options {
         systemProperties(System.getProperties())
         systemProperties.remove("java.endorsed.dirs")
         useDefaultListeners = true
-        configFailurePolicy 'continue'
     }
-    testLogging.showStandardStreams = true
 }
 
 task runFirefoxSuite(type: Test) {
     scanForTestClasses = false
     useTestNG() {
         useDefaultListeners = true
+        testLogging.showStandardStreams = true
         suites 'testngsuites/firefoxsuite.xml'
     }
     options {
         systemProperties(System.getProperties())
         systemProperties.remove("java.endorsed.dirs")
         useDefaultListeners = true
-        configFailurePolicy 'continue'
     }
-    testLogging.showStandardStreams = true
 }

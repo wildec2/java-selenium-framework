@@ -23,7 +23,7 @@ import static org.openqa.selenium.remote.CapabilityType.ACCEPT_SSL_CERTS;
 public class DriverSupplier {
 
     private static final String HEADLESS = System.getProperty("headless", "false");
-    private static final String RUN_ON_DOCKER = System.getProperty("docker", "false");
+    private static final String RUN_ON_GRID = System.getProperty("grid", "false");
     private static final String hubUrl = System.getProperty("hubUrl", "http://localhost:4444/wd/hub");
 
     private static final Supplier<WebDriver> chromeSupplier = () -> {
@@ -67,7 +67,7 @@ public class DriverSupplier {
             chromeOptions.setCapability(ACCEPT_SSL_CERTS, true);
             chromeOptions.setCapability(ACCEPT_INSECURE_CERTS, true);
         }
-        if (parseBoolean(RUN_ON_DOCKER)) {
+        if (parseBoolean(RUN_ON_GRID)) {
             chromeOptions.addArguments("--disable-dev-shm-usage");
             return new RemoteWebDriver(new URL(hubUrl), chromeOptions);
         }
@@ -85,7 +85,7 @@ public class DriverSupplier {
             firefoxOptions.setCapability(ACCEPT_SSL_CERTS, true);
             firefoxOptions.setCapability(ACCEPT_INSECURE_CERTS, true);
         }
-        if (parseBoolean(RUN_ON_DOCKER)) {
+        if (parseBoolean(RUN_ON_GRID)) {
             firefoxOptions.addArguments("--disable-dev-shm-usage");
             return new RemoteWebDriver(new URL(hubUrl), firefoxOptions);
         }
