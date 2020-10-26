@@ -35,8 +35,8 @@ gradle clean runFirefoxSuite
 ```
 If you want to run on selenium grid:
 ```
-gradle clean runChromeSuite -Dheadless=true  -Ddocker=true
-gradle clean runFirefoxSuite -Dheadless=true  -Ddocker=true
+gradle clean runChromeSuite -Dheadless=true  -Dgrid=true
+gradle clean runFirefoxSuite -Dheadless=true  -Dgrid=true
 ```
 
 
@@ -213,8 +213,8 @@ gradle clean runFirefoxSuite
 ```
 To run the testng suites via the gradle tasks on selenium grid:
 ```
-gradle clean runChromeSuite -Dheadless=true  -Ddocker=true
-gradle clean runFirefoxSuite -Dheadless=true  -Ddocker=true
+gradle clean runChromeSuite -Dheadless=true  -Dgrid=true
+gradle clean runFirefoxSuite -Dheadless=true  -Dgrid=true
 ```
 
 ## Jenkins
