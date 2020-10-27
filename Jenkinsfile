@@ -33,14 +33,7 @@ pipeline{
         }
         stage("Publish HTML Report"){
             steps{
-                publishHTML([
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir "./build/reports/tests/runTestSuite",
-                    reportFiles: 'index.html',
-                    reportName: 'Test Results']
-                ])
+
             }
         }
  	}
