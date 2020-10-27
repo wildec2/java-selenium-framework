@@ -12,6 +12,8 @@ pipeline{
         stage ('SCM checkout'){
             steps{
                 git "https://github.com/wildec2/pwa-responsive-web-java-selenium-framework.git"
+                cleanWs()
+                checkout scm
             }
         }
         stage('Bringing Up Selenium Grid') {
@@ -31,14 +33,14 @@ pipeline{
         }
         stage("Publish HTML Report"){
             steps{
-                publishHTML target: [
+                publishHTML([
                     allowMissing: false,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir "./build/reports/tests/runTestSuite",
                     reportFiles: 'index.html',
                     reportName: 'Test Results']
-                ]
+                ])
             }
         }
  	}
