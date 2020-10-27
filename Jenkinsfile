@@ -31,6 +31,7 @@ pipeline{
         }
         stage("Publish HTML Report"){
             steps{
+                echo "publish report steps here"
             }
         }
  	}
