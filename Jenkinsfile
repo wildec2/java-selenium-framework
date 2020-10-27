@@ -24,12 +24,12 @@ pipeline {
         }
         stage ('Build'){
             steps{
-                sh "gradlew clean build"
+                sh "gradle clean build"
             }
         }
         stage ('Run tests') {
             steps{
-                sh "gradlew clean runTestSuite -Dheadless=true -Dgrid=true"
+                sh "gradle clean runTestSuite -Dheadless=true -Dgrid=true"
             }
         }
         stage('Tearing Down Selenium Grid') {
