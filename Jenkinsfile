@@ -12,8 +12,6 @@ pipeline{
         stage ('SCM checkout'){
             steps{
                 git "https://github.com/wildec2/pwa-responsive-web-java-selenium-framework.git"
-                cleanWs()
-                checkout scm
             }
         }
         stage('Bringing Up Selenium Grid') {
