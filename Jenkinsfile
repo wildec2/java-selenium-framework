@@ -4,7 +4,7 @@ def chrome='chrome-${BUILD_NUMBER}'
 def firefox='firefox-${BUILD_NUMBER}'
 def containertest='conatinertest-${BUILD_NUMBER}'
 
-pipeline {
+pipeline{
 
     agent any
 
@@ -24,9 +24,21 @@ pipeline {
                 sh "gradle clean build"
             }
         }
-        stage ('Run tests') {
+        stage ('Run tests'){
             steps{
                 sh "gradle clean runTestSuite -Dheadless=true -Dgrid=true"
+            }
+        }
+        stage("Publish HTML Report"){
+            steps{
+                publishHTML target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir "./build/reports/tests/runTestSuite",
+                    reportFiles: 'index.html',
+                    reportName: 'Test Results']
+                ]
             }
         }
  	}
