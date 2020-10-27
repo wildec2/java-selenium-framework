@@ -195,15 +195,14 @@ task runChromeSuite(type: Test) {
     scanForTestClasses = false
     useTestNG() {
         useDefaultListeners = true
-        suites 'testngsuites/chromeregressionsuite.xml'
+        testLogging.showStandardStreams = true
+        suites 'testngsuites/chromesuite.xml'
     }
     options {
         systemProperties(System.getProperties())
         systemProperties.remove("java.endorsed.dirs")
         useDefaultListeners = true
-        configFailurePolicy 'continue'
     }
-    testLogging.showStandardStreams = true
 }
 ```
 To run the testng suites via the gradle tasks.
