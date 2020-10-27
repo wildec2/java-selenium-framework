@@ -1,0 +1,73 @@
+plugins {
+    id 'java'
+    id 'io.freefair.lombok' version '4.1.6'
+}
+
+group 'sample-tests'
+version '1.0-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(
+            'org.seleniumhq.selenium:selenium-api:3.141.59',
+            'io.appium:java-client:7.0.0',
+            'ru.yandex.qatools.htmlelements:htmlelements-all:1.20.0'
+    )
+
+    testCompile(
+            'org.testng:testng:6.14.3',
+            'io.github.bonigarcia:webdrivermanager:3.4.0'
+    )
+}
+
+tasks.withType(Test) {
+    jvmArgs project.gradle.startParameter.systemPropertiesArgs.entrySet().collect { "-D${it.key}=${it.value}" }
+}
+
+task runTestSuite(type: Test) {
+    scanForTestClasses = false
+    useTestNG() {
+        useDefaultListeners = true
+        testLogging.showStandardStreams = true
+        suites 'testngsuites/chromesuite.xml',
+                'testngsuites/firefoxsuite.xml'
+    }
+    options {
+        systemProperties(System.getProperties())
+        systemProperties.remove("java.endorsed.dirs")
+        useDefaultListeners = true
+    }
+}
+
+task runChromeSuite(type: Test) {
+    scanForTestClasses = false
+    useTestNG() {
+        useDefaultListeners = true
+        testLogging.showStandardStreams = true
+        suites 'testngsuites/chromesuite.xml'
+    }
+    options {
+        systemProperties(System.getProperties())
+        systemProperties.remove("java.endorsed.dirs")
+        useDefaultListeners = true
+    }
+}
+
+task runFirefoxSuite(type: Test) {
+    scanForTestClasses = false
+    useTestNG() {
+        useDefaultListeners = true
+        testLogging.showStandardStreams = true
+        suites 'testngsuites/firefoxsuite.xml'
+    }
+    options {
+        systemProperties(System.getProperties())
+        systemProperties.remove("java.endorsed.dirs")
+        useDefaultListeners = true
+    }
+}
