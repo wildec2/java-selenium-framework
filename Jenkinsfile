@@ -31,7 +31,6 @@ pipeline{
         }
         stage("Publish HTML Report"){
             steps{
-
             }
         }
  	}
