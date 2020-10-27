@@ -1,0 +1,28 @@
+version: "3"
+services:
+  hub:
+    image: selenium/hub
+    ports:
+      - 4444:4444
+    environment:
+      GRID_MAX_SESSION: 8
+  firefox:
+    image: selenium/node-firefox
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+      NODE_MAX_INSTANCES: 4
+      NODE_MAX_SESSION: 4
+  chrome:
+    image: selenium/node-chrome
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+      NODE_MAX_INSTANCES: 4
+      NODE_MAX_SESSION: 4
