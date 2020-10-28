@@ -39,5 +39,8 @@ pipeline{
  	    always{
  	        sh "docker-compose down"
  	    }
+ 	    always{
+            step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
+        }
  	}
 }
