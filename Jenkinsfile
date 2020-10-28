@@ -20,6 +20,7 @@ pipeline{
                 }
                 cleanWs()
                 checkout scm
+                git "https://github.com/wildec2/pwa-responsive-web-java-selenium-framework.git"
             }
         }
         stage('Bringing Up Selenium Grid') {
