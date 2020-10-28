@@ -8,9 +8,18 @@ pipeline{
 
     agent any
 
+    options{
+        buildDiscarder(logRotator(numToKeepStr: '8'))
+    }
+
     stages{
         stage ('SCM checkout'){
             steps{
+                script{
+                    currentBuild.displayName = "#${BUILD_NUMBER} [${GIT_BRANCH}]"
+                }
+                cleanWs()
+                checkout scm
                 git "https://github.com/wildec2/pwa-responsive-web-java-selenium-framework.git"
             }
         }
@@ -30,6 +39,7 @@ pipeline{
             }
         }
  	}
+
  	post{
  	    always{
  	        sh "docker-compose down"
