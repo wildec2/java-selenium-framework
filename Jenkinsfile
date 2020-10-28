@@ -22,19 +22,14 @@ pipeline{
                 checkout scm
             }
         }
-        stage('Bringing Up Selenium Grid') {
+        stage('Create Selenium Grid') {
                  steps{
                     sh "docker-compose up -d"
                  }
         }
-        stage ('Build'){
-            steps{
-                sh "gradle clean build"
-            }
-        }
         stage ('Run tests'){
             steps{
-                sh "gradle clean runTestSuite -Dheadless=true -Dgrid=true"
+                sh "./gradle clean runTestSuite -Dheadless=true -Dgrid=true"
             }
         }
  	}
