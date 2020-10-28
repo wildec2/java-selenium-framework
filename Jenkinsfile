@@ -29,18 +29,11 @@ pipeline{
                 sh "gradle clean runTestSuite -Dheadless=true -Dgrid=true"
             }
         }
-        stage("Publish HTML Report"){
-            steps{
-                echo "publish report steps here"
-            }
-        }
  	}
  	post{
  	    always{
  	        sh "docker-compose down"
+ 	        step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
  	    }
- 	    always{
-            step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
-        }
  	}
 }
