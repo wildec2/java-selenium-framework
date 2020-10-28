@@ -13,7 +13,7 @@ pipeline{
     }
 
     stages{
-        stage ('SCM checkout'){
+        stage ('Clone Project'){
             steps{
                 script{
                     currentBuild.displayName = "#${BUILD_NUMBER} [${GIT_BRANCH}]"
@@ -27,7 +27,7 @@ pipeline{
                     sh "docker-compose up -d"
                  }
         }
-        stage ('Run tests'){
+        stage ('Run Tests'){
             steps{
                 sh "./gradlew clean runTestSuite -Dheadless=true -Dgrid=true"
             }

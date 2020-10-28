@@ -221,10 +221,10 @@ The Jenkinsfile in the root of the project contains most of what you need to run
 
 The Pipeline consists of 3 stages and 2 post actions:
 
-Stage - SCM Checkout:
+Stage - Clone Project:
 Preparation stage where we receive updates from our repository. Here the build is given a name to display and the code is checked out.
 ```
-stage ('SCM Checkout'){
+stage ('Clone Project'){
        steps{
               script{
                      currentBuild.displayName = "#${BUILD_NUMBER} [${GIT_BRANCH}]"
@@ -246,7 +246,7 @@ stage('Create Selenium Grid') {
 Stage - Run Tests:
 This stage runs the tests as per the gradle commands outlined above. The gradle wrapper is used so no gradle installation is necessary.
 ```
-stage ('Run tests'){
+stage ('Run Tests'){
        steps{
               sh "./gradlew clean runTestSuite -Dheadless=true -Dgrid=true"
        }
