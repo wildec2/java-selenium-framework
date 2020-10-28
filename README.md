@@ -11,7 +11,7 @@ the testng test automation framework is used for specifying, arranging and runni
 ## Setup
 
 This will work straight out of the box once your java setup is ok.
-There's a gradle wrapper included so you don't have to install gradle. Just  use gradlew rather than gradle when running commands. 
+There's a gradle wrapper included so you don't have to install gradle. Just  use gradlew(or ./gradlew) rather than gradle when running commands. 
 Clone the repo, open in IntelliJ, build and run the tests.
 
 To fire up selenium grid:
@@ -113,7 +113,10 @@ ru.yandex.qatools.htmlelements:htmlelements-all
 Page Factory is not required here for creating page objects. You can use By or String to as element locators. Whatever you fancy. 
 
 ## Selenium Grid
-Selenium Grid is used for running the tests on remote machines. This can be used for parallel running of tests to reduce the run time of suites and can make available many platforms where the tests can be run. The hub accepts requests to run tests and manages threads while the nodes, here the browsers live, receive the requests from the hub and execute them on the browser. This set up contains a hub with two nodes. One node has 4 Chrome instances and the other has 4 Firefox instances. When the testngxml suite is ran the tests will be distributed by the hub to node with the correct browser. As our testng xml specifies parallel classes one class will be run on one browser instance at a time. 
+Selenium Grid is used for running the tests on remote machines. This can be used for parallel running of tests to reduce the run time of suites 
+and can make available many platforms where the tests can be run. The hub accepts requests to run tests and manages threads while the nodes, where the browsers live, receive the requests from the hub and execute them on the browser. 
+This set up contains a hub with two nodes. One node has 4 Chrome instances and the other has 4 Firefox instances. When the testngxml suite is ran the tests will be distributed by the hub to node with the correct browser. As our 
+testng xml specifies parallel classes one class will be run on one browser instance at a time. 
 
 ## Docker Compose
 Docker compose is used to bring up(and down) the grid and nodes. 
