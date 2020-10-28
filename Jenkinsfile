@@ -29,7 +29,7 @@ pipeline{
         }
         stage ('Run tests'){
             steps{
-                sh "./gradle clean runTestSuite -Dheadless=true -Dgrid=true"
+                sh "./gradlew clean runTestSuite -Dheadless=true -Dgrid=true"
             }
         }
  	}
