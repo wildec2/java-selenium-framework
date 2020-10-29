@@ -215,13 +215,11 @@ task runTestSuite(type: Test) {
 ```
 To run the testng suites via the gradle tasks.
 ```
-gradle clean runChromeSuite
-gradle clean runFirefoxSuite
+gradle clean runTestSuite
 ```
 To run the testng suites via the gradle tasks on selenium grid:
 ```
-gradle clean runChromeSuite -Dheadless=true  -Dgrid=true
-gradle clean runFirefoxSuite -Dheadless=true  -Dgrid=true
+gradle clean runTestSuite -Dheadless=true  -Dgrid=true
 ```
 
 ## Jenkins
