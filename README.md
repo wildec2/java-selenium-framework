@@ -30,13 +30,11 @@ docker-compose down
 You can run your tests using intelliJ straight away. 
 Or you can run the testng suites via the gradle tasks.
 ```
-gradle clean runChromeSuite
-gradle clean runFirefoxSuite
+gradle clean runTestSuite
 ```
 If you want to run on selenium grid:
 ```
-gradle clean runChromeSuite -Dheadless=true  -Dgrid=true
-gradle clean runFirefoxSuite -Dheadless=true  -Dgrid=true
+gradle clean runTestSuite -Dheadless=true  -Dgrid=true
 ```
 
 
@@ -84,7 +82,12 @@ The suites are then arranged and ran using testng xml files. The browser on whic
 ```
 <parameter name="Browser" value="firefox"/>
 ```
-So this setup only allows us to run mobile of tablet tests on Chrome. So the FirefoxSuite.xml excludes the mobile and tablet groups. 
+By default the browser is set to Chrome.
+```
+@Parameters("Browser")
+    public void setUpEnvBeforeTest(@Optional("chrome") String browser, Method method) {
+```
+So this setup only allows us to run mobile of tablet tests on Chrome using the device mode feature. So desktopsuite.xml excludes the mobile and tablet groups. 
 ```
 <groups>
        <run>
@@ -115,7 +118,7 @@ Page Factory is not required here for creating page objects. You can use By or S
 ## Selenium Grid
 Selenium Grid is used for running the tests on remote machines. This can be used for parallel running of tests to reduce the run time of suites 
 and can make available many platforms where the tests can be run. The hub accepts requests to run tests and manages threads while the nodes, where the browsers live, receive the requests from the hub and execute them on the browser. 
-This set up contains a hub with two nodes. One node has 4 Chrome instances and the other has 4 Firefox instances. When the testngxml suite is ran the tests will be distributed by the hub to node with the correct browser. As our 
+This set up contains a hub with two nodes. One node has X Chrome instances and the other has X Firefox instances. When the testngxml suite is ran the tests will be distributed by the hub to node with the correct browser. As our 
 testng xml specifies parallel classes one class will be run on one browser instance at a time. 
 
 ## Docker Compose
@@ -194,12 +197,14 @@ plugins {
 
 And the tasks to run the tests:
 ```
-task runChromeSuite(type: Test) {
+task runTestSuite(type: Test) {
     scanForTestClasses = false
     useTestNG() {
         useDefaultListeners = true
         testLogging.showStandardStreams = true
-        suites 'testngsuites/chromesuite.xml'
+        suites 'testngsuites/desktopsuite.xml',
+                'testngsuites/tabletsuite.xml',
+                'testngsuites/mobilesuite.xml'
     }
     options {
         systemProperties(System.getProperties())

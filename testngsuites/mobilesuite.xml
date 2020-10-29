@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Mobile Tests" parallel="classes" thread-count="2">
+    <groups>
+        <run>
+            <exclude name="desktop" />
+            <exclude name="tablet" />
+        </run>
+    </groups>
+    <test name="Mobile Tests - Chrome Emulator">
+        <parameter name="Browser" value="chrome"/>
+        <classes>
+            <class name="discoverireland.HomepageTests"/>
+            <class name="discoverireland.DestinationPageTests"/>
+        </classes>
+    </test>
+</suite>
