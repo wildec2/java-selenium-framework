@@ -7,6 +7,7 @@ when running mobile or tablet tests. Using device mode this allows the frontend 
 rendered server side which can be essential for PWA testing. Included is a selenium grid
 setup via docker-compose to allow for remote headless running of tests. The build tool is gradle and 
 the testng test automation framework is used for specifying, arranging and running the tests. 
+Docker is used to spin up the grid. There's also a Jenkins set-up included to get the tests running in a pipeline.
 
 ## Setup
 
