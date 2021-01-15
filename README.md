@@ -88,7 +88,7 @@ By default the browser is set to Chrome.
 @Parameters("Browser")
     public void setUpEnvBeforeTest(@Optional("chrome") String browser, Method method) {
 ```
-So this setup only allows us to run mobile of tablet tests on Chrome using the device mode feature. So desktopsuite.xml excludes the mobile and tablet groups. 
+So this setup only allows us to run mobile of tablet tests on Chrome using the device mode feature. So the chrome suite runs all the tests(mobile, desktop and tablet) making use of Chrome device mode but firefoxsuite.xml excludes the mobile and tablet groups. 
 ```
 <groups>
        <run>
@@ -97,7 +97,8 @@ So this setup only allows us to run mobile of tablet tests on Chrome using the d
        </run>
 </groups>
 ```
-Multithreading is also specified in these xml files for 4 concurrent runs of classes. These can be updated to handle tests or packages or whatever is needed for concurrency.
+Multithreading is also specified in these xml files for 4 concurrent runs of methods. These can be updated to handle classes or packages or whatever is needed for concurrency. As we are using methods we need to ensure WebDriver instances are thread safe.
+The DriverFactory class and how the Webdriver instances are created in TestBase handle this for us.
 
 ## Page Object Model
 The Page Object Model design pattern is followed where WebElements and the actions to be performed on them are mapped in classes representing a page.
@@ -192,7 +193,7 @@ Additionally contained are java and lombok plugins:
 ```
 plugins {
     id 'java'
-    id 'io.freefair.lombok' version '4.1.6'
+    id 'io.freefair.lombok'
 }
 ```
 
@@ -203,16 +204,14 @@ task runTestSuite(type: Test) {
     useTestNG() {
         useDefaultListeners = true
         testLogging.showStandardStreams = true
-        suites 'testngsuites/desktopsuite.xml',
-                'testngsuites/tabletsuite.xml',
-                'testngsuites/mobilesuite.xml'
+        suites 'testngsuites/chromesuite.xml',
+                'testngsuites/firefoxsuite.xml'
+        options {
+            systemProperties(System.getProperties())
+            systemProperties.remove("java.endorsed.dirs")
+            useDefaultListeners = true
+        }
     }
-    options {
-        systemProperties(System.getProperties())
-        systemProperties.remove("java.endorsed.dirs")
-        useDefaultListeners = true
-    }
-}
 ```
 To run the testng suites via the gradle tasks.
 ```

@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'io.freefair.lombok' version '4.1.6'
+    id 'io.freefair.lombok' version '5.3.0'
 }
 
 group 'sample-tests'
@@ -15,18 +15,14 @@ repositories {
 dependencies {
     compile(
             'org.seleniumhq.selenium:selenium-api:3.141.59',
-            'io.appium:java-client:7.0.0',
+            'io.appium:java-client:7.3.0',
             'ru.yandex.qatools.htmlelements:htmlelements-all:1.20.0'
     )
 
     testCompile(
             'org.testng:testng:6.14.3',
-            'io.github.bonigarcia:webdrivermanager:3.4.0'
+            'io.github.bonigarcia:webdrivermanager:4.3.0'
     )
-}
-
-tasks.withType(Test) {
-    jvmArgs project.gradle.startParameter.systemPropertiesArgs.entrySet().collect { "-D${it.key}=${it.value}" }
 }
 
 task runTestSuite(type: Test) {
@@ -34,13 +30,12 @@ task runTestSuite(type: Test) {
     useTestNG() {
         useDefaultListeners = true
         testLogging.showStandardStreams = true
-        suites 'testngsuites/desktopsuite.xml',
-                'testngsuites/tabletsuite.xml',
-                'testngsuites/mobilesuite.xml'
-    }
-    options {
-        systemProperties(System.getProperties())
-        systemProperties.remove("java.endorsed.dirs")
-        useDefaultListeners = true
+        suites 'testngsuites/chromesuite.xml',
+                'testngsuites/firefoxsuite.xml'
+        options {
+            systemProperties(System.getProperties())
+            systemProperties.remove("java.endorsed.dirs")
+            useDefaultListeners = true
+        }
     }
 }

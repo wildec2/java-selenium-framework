@@ -32,7 +32,7 @@ public class DestinationPageTests extends TestBase {
     }
 
     private void testPageHeading() {
-        assertThat("page h1 incorrect", destinationPage.getHeading().getText(), is("Find your next adventure"));
+        assertThat("page h1 incorrect", destinationPage.getHeading().getText(), is("More destinations to explore"));
     }
 
 }

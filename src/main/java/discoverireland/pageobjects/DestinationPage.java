@@ -14,7 +14,7 @@ import static java.time.Duration.ofSeconds;
 @Getter
 public class DestinationPage extends PageObject {
 
-    @FindBy(css = ".dpkrag-0.dnGnON > div > span")
+    @FindBy(css = ".sc-11tmdj9-0")
     private WebElement heading;
 
     public DestinationPage(WebDriver driver) {

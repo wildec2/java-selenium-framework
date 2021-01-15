@@ -14,7 +14,7 @@ import static discoverireland.constants.URLs.HOMEPAGE;
 @Getter
 public class Homepage extends PageObject {
 
-    @FindBy(css = "div.qnjgez-0.fJKyKi > span")
+    @FindBy(css = ".sc-11tmdj9-0")
     private WebElement heading;
 
     public Homepage(WebDriver driver) {

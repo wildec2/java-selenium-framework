@@ -8,23 +8,26 @@ import java.lang.reflect.Method;
 
 public class TestBase {
 
-    private WebDriver driver;
-
     @BeforeMethod
     @Parameters("Browser")
     public void setUpEnvBeforeTest(@Optional("chrome") String browser, Method method) {
         Test test = method.getAnnotation(Test.class);
 
+        WebDriver driver;
+
         String device = test.groups()[0];
         switch (device) {
             case "mobile":
-                driver = DriverSupplier.getDriver("chromeMobileEmulator");
+                setDriver(DriverSupplier.getDriver("chromeMobileEmulator"));
+                driver = getDriver();
                 break;
             case "desktop":
-                driver = DriverSupplier.getDriver(browser);
+                setDriver(DriverSupplier.getDriver(browser));
+                driver = getDriver();
                 break;
             case "tablet":
-                driver = DriverSupplier.getDriver("chromeTabletEmulator");
+                setDriver(DriverSupplier.getDriver("chromeTabletEmulator"));
+                driver = getDriver();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid device type for test: " + device);
@@ -32,13 +35,17 @@ public class TestBase {
     }
 
     protected WebDriver getDriver() {
-        return driver;
+        return DriverFactory.getInstance().getDriver();
+    }
+
+    private void setDriver(WebDriver driver) {
+        DriverFactory.getInstance().setDriver(driver);
     }
 
     @AfterMethod(alwaysRun = true)
     public void cleanEnvAfterTest(ITestResult result) {
             if (getDriver() != null) {
-                getDriver().quit();
+                DriverFactory.getInstance().closeBrowser();
             }
     }
 }

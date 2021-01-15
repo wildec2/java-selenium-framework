@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Desktop Tests" parallel="tests" thread-count="2">
+
+<suite name="Mobile Tests" parallel="methods" thread-count="4">
     <groups>
         <run>
             <exclude name="mobile" />
             <exclude name="tablet" />
         </run>
     </groups>
-    <test name="Firefox" parallel="classes" thread-count="2">
+    <test name="Firefox Tests">
         <parameter name="Browser" value="firefox"/>
-        <classes>
-            <class name="discoverireland.HomepageTests"/>
-            <class name="discoverireland.DestinationPageTests"/>
-        </classes>
-    </test>
-    <test name="Chrome" parallel="classes" thread-count="2">
-        <parameter name="Browser" value="chrome"/>
         <classes>
             <class name="discoverireland.HomepageTests"/>
             <class name="discoverireland.DestinationPageTests"/>
