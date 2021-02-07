@@ -7,7 +7,7 @@ pipeline{
     }
 
     stages{
-        stage ('Clone Project'){
+        stage ('Clone project'){
             steps{
                 script{
                     currentBuild.displayName = "#${BUILD_NUMBER} [${GIT_BRANCH}]"
@@ -16,14 +16,9 @@ pipeline{
                 checkout scm
             }
         }
-        stage('Create Selenium Grid') {
-                 steps{
-                    sh "docker-compose up -d"
-                 }
-        }
-        stage ('Run Tests'){
+        stage ('Set up environment and run tests'){
             steps{
-                sh "./gradlew clean runTestSuite -Dheadless=true -Dgrid=true"
+                sh "docker-compose up --exit-code-from selenium-tests"
             }
         }
  	}
@@ -32,6 +27,8 @@ pipeline{
  	    always{
  	        sh "docker-compose down"
  	        step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
+ 	        //delete image created for application under test "sh docker image rm cypress/someAppImageName"
+ 	        sh "docker image rm selenium/tests"
  	    }
  	}
 }
