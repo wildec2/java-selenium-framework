@@ -1,5 +1,10 @@
 version: "3"
 services:
+#  myApp:
+#    build: ../
+#    image: my/app
+#    ports:
+#      - "3000:3000"
   hub:
     image: selenium/hub
     ports:
@@ -26,3 +31,14 @@ services:
       HUB_HOST: hub
       NODE_MAX_INSTANCES: 4
       NODE_MAX_SESSION: 4
+  selenium-tests:
+    build: .
+    image: selenium/tests
+    depends_on:
+      - hub
+      - chrome
+      - firefox
+    command: "gradle runTestSuite --warning-mode=all -Dbase_url=https://www.discoverireland.ie/ -Dheadless=true -Dgrid=true -DhubUrl=http://hub:4444/wd/hub"
+    volumes:
+      - ./:/java-selenium-framework
+      - /dev/shm:/dev/shm
