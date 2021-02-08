@@ -36,3 +36,5 @@ src/main/resources/*.jar
 
 *.png
 *.config
+
+.DS_STORE
