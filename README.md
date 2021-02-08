@@ -15,14 +15,14 @@ This will work straight out of the box once your java setup is ok.
 There's a gradle wrapper included so you don't have to install gradle. Just  use gradlew(or ./gradlew) rather than gradle when running commands. 
 Clone the repo, open in IntelliJ, build and run the tests.
 
-To fire up selenium grid:
+To fire up selenium grid and run the tests inside of a container:
 ```
 docker-compose up -d
 ```
 
 http://localhost:4444/grid/console
 
-To bring down selenium grid:
+To bring down our containers:
 ```
 docker-compose down
 ```
@@ -124,16 +124,16 @@ This set up contains a hub with two nodes. One node has X Chrome instances and t
 testng xml specifies parallel classes one class will be run on one browser instance at a time. 
 
 ## Docker Compose
-Docker compose is used to bring up(and down) the grid and nodes. 
+Docker compose is used to, bring up a branch environment(although currently commented out), bring up(and down) the grid and nodes and run our tests.
 
-To fire up selenium grid:
+To fire up selenium grid and run tests:
 ```
-docker-compose up -d
+docker-compose up --exit-code-from selenium-tests
 ```
 
-http://localhost:4444/grid/console
+'--exit-code-from selenium-tests' exits the container when the selenium-tests services finished.
 
-To bring down selenium grid:
+To remove the containers and network:
 ```
 docker-compose down
 ```
@@ -185,6 +185,37 @@ And tell your testng.xml to run the tests here
 ```
 <parameter name="Port" value="9002" />
 ```
+Running Tests:
+```
+selenium-tests:
+    build: .
+    image: selenium/tests
+    depends_on:
+      - hub
+      - chrome
+      - firefox
+    command: "gradle runTestSuite --warning-mode=all -Dbase_url=https://www.discoverireland.ie/ -Dheadless=true -Dgrid=true -DhubUrl=http://hub:4444/wd/hub"
+    volumes:
+      - ./:/java-selenium-framework
+      - /dev/shm:/dev/shm
+```
+This will run our tests using the image with the name Dockerfile in the current directory. We've named it 'selenium/tests' so we can delete the image later. We've made it dependent on the hub and nodes.
+
+The Dockerfile gives us everything we need to run gradle builds inside a container so not installation is needed. And the command is the same as we would use on our host machine to run our tests via gradle.
+
+Finally we mount so the results are visible on the host machine.
+
+```
+#  myApp:
+#    build: ../
+#    image: my/app
+#    ports:
+#      - "3000:3000"
+```
+
+We also have a commented out service. If these tests were living in a project repository inside their own directory then this service would create the app if there were a Dockerfile in the project root and expose it on port 3000.
+
+This allows us to test branch environments by updating  -Dbase_url in the gradle command.
 
 ## Gradle
 Gradle is used as the build tool. The dependencies can be seen above.
@@ -241,33 +272,27 @@ stage ('Clone Project'){
 }
 ```
 Stage - Create Selenium Grid: 
-This stage runs the docker-compose up command and brings up the grid by using the docker-compose.yml file outlined above.
+This stage runs the docker-compose up command and brings up, potentially a branch environment, the grid and nodes and runs our tests exiting when the build is complete.
 ```
-stage('Create Selenium Grid') {
-       steps{
-              sh "docker-compose up -d"
-       }
-}
-```
-Stage - Run Tests:
-This stage runs the tests as per the gradle commands outlined above. The gradle wrapper is used so no gradle installation is necessary.
-```
-stage ('Run Tests'){
-       steps{
-              sh "./gradlew clean runTestSuite -Dheadless=true -Dgrid=true"
-       }
+stage ('Set up environment and run tests'){
+    steps{
+        sh "docker-compose up --exit-code-from selenium-tests"
+    }
 }
 ```
 
 Post Actions - 
 There are two action which always run even if an earlier step in the pipeline fails.
-1. Bring down the grid. Stop and delete the containers created.
+1. Stop and delete the created containers and network.
 2. Publish the testNG test results report created when the tests completed.
+3. Delete the created images.
 ```
 post{
-       always{
-              sh "docker-compose down"
-              step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
-       }
+    always{
+        sh "docker-compose down"
+ 	    step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
+ 	    //delete image created for application under test "sh docker image rm cypress/someAppImageName"
+ 	    sh "docker image rm selenium/tests"
+ 	}
 }
 ```
