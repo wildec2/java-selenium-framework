@@ -27,7 +27,7 @@ pipeline{
  	    always{
  	        sh "docker-compose down"
  	        step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
- 	        //delete image created for application under test "sh docker image rm cypress/someAppImageName"
+ 	        //delete image created for application under test "sh docker image rm my/app"
  	        sh "docker image rm selenium/tests"
  	    }
  	}
