@@ -18,7 +18,7 @@ pipeline{
         }
         stage ('Set up environment and run tests'){
             steps{
-                sh "docker-compose up --exit-code-from selenium-tests"
+                sh "docker-compose -f docker-compose-v3.yml up --scale chrome=2 --scale firefox=2 --scale edge=2 --exit-code-from selenium-tests"
             }
         }
  	}
