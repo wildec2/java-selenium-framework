@@ -15,7 +15,7 @@ repositories {
 dependencies {
     implementation(
             'org.seleniumhq.selenium:selenium-api:4.1.2',
-            'io.appium:java-client:7.6.0',
+            'io.appium:java-client:7.3.0',
             'ru.yandex.qatools.htmlelements:htmlelements-all:1.20.0',
             'org.testng:testng:7.5',
             'io.github.bonigarcia:webdrivermanager:5.0.3'
