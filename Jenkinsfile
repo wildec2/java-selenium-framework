@@ -26,7 +26,13 @@ pipeline{
  	post{
  	    always{
  	        sh "docker-compose down"
- 	        step([$class: 'Publisher', reportFilenamePattern: '**/index.html'])
+ 	        step(publishHTML target: [
+                                     allowMissing: false,
+                                     alwaysLinkToLastBuild: true,
+                                     keepAll: true,
+                                     reportDir: "./build/reports/tests/runTestSuite",
+                                     reportFiles: 'index.html',
+                                     reportName: 'HTML Report'])
  	        //delete image created for application under test "sh docker image rm my/app"
  	        sh "docker image rm selenium/tests"
  	    }
