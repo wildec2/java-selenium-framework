@@ -26,7 +26,7 @@ pipeline{
  	post{
  	    always{
  	        sh "docker-compose down"
- 	        step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
+ 	        step([$class: 'Publisher', reportFilenamePattern: '**/index.html'])
  	        //delete image created for application under test "sh docker image rm my/app"
  	        sh "docker image rm selenium/tests"
  	    }
